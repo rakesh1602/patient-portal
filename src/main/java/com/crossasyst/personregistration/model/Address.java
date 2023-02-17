@@ -1,8 +1,12 @@
 package com.crossasyst.personregistration.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +20,4 @@ public class Address {
     private String state;
     private String city;
     private Long zipCode;
-
-    private Person person;
 }

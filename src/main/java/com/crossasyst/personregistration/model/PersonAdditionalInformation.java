@@ -19,7 +19,4 @@ public class PersonAdditionalInformation {
 
     private Boolean isSmoker;
 
-    private CareProvider careProvider;
-
-    private Person person;
 }

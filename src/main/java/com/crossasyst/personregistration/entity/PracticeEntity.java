@@ -44,8 +44,8 @@ public class PracticeEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "practiceEntity")
     private List<LocationEntity> locationEntity;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "practiceEntity")
-    private List<PracticeContactEntity> practiceContactEntity;
+   /* @OneToMany(cascade = CascadeType.ALL, mappedBy = "practiceEntity")
+    private List<PracticeContactEntity> practiceContactEntity;*/
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "practiceEntity")
     private List<PracticeStaffEntity> practiceStaffEntities;

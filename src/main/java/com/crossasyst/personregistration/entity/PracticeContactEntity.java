@@ -41,9 +41,6 @@ public class PracticeContactEntity {
     @Column(name = "contact_person")
     private String contactPerson;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private PracticeEntity practiceEntity;
-
-    @OneToOne(mappedBy = "practiceEntity")
-    private PracticeContactTypeEntity practiceContactTypeEntity;
+   /* @ManyToOne(fetch = FetchType.LAZY)
+    private PracticeEntity practiceEntity;*/
 }
