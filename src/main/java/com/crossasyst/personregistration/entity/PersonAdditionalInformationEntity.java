@@ -26,7 +26,7 @@ import java.util.List;
 public class PersonAdditionalInformationEntity {
 
     @Id
-    @SequenceGenerator(name = "person_additional_information_seq_id", sequenceName = "person_additional_information_seq_id", initialValue = 10000000, allocationSize = 1)
+    @SequenceGenerator(name = "person_additional_information_seq_id", sequenceName = "person_additional_information_seq_id", initialValue = 30000000, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_additional_information_seq_id")
     @Column(name = "person_additional_information_id")
     private Long personAdditionalInformationId;
@@ -46,13 +46,12 @@ public class PersonAdditionalInformationEntity {
     @Column(name = "is_smoker")
     private Boolean isSmoker;
 
-    @OneToOne(mappedBy = "personAdditionalInformation")
-    private CareProviderEntity careProviderEntity;
-
-    @OneToOne(mappedBy = "personAdditionalInformationEntity")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "person_id")
     private PersonEntity personEntity;
 
-    @OneToMany( cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id")
-    private List<PersonContactEntity> personContactEntity;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "care_provider_id")
+    private CareProviderEntity careProviderEntity;
+
 }

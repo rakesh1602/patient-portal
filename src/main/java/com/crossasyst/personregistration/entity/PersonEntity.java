@@ -1,6 +1,5 @@
 package com.crossasyst.personregistration.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -77,12 +74,11 @@ public class PersonEntity {
     @JoinColumn(name = "person_id")
     private List<AddressEntity> addressEntity;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "person_id")
+    @OneToOne(mappedBy = "personEntity")
     private PersonAdditionalInformationEntity personAdditionalInformationEntity;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_Id")
-    private List<PersonContactEntity> personContactEntity;
+    private List<PersonPhoneEntity> personPhoneEntity;
 
 }

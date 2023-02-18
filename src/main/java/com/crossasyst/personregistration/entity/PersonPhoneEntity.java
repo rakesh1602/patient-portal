@@ -15,26 +15,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "person_contact")
-public class PersonContactEntity {
+public class PersonPhoneEntity {
 
     @Id
-    @SequenceGenerator(name = "person_contact_seq_id", sequenceName = "person_contact_seq_id", initialValue = 10000000, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_contact_seq_id")
+    @SequenceGenerator(name = "person_phone_seq_id", sequenceName = "person_phone_seq_id", initialValue = 10000000, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_phone_seq_id")
     @Column(name = "person_contact_id")
     private Long personContactId;
 
-    @Column(name = "home_phone_number")
-    private String homePhoneNumber;
+    @Column(name = "phone_no")
+    private Integer phoneNo;
 
-    @Column(name = "alternate_phone_number")
-    private String alternatePhoneNumber;
+    @Column(name = "phone_no_type")
+    private String phoneNoType;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")

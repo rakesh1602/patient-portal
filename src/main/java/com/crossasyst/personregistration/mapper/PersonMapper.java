@@ -8,8 +8,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface PersonMapper {
 
-    @Mapping(source = "personAdditionalInformation", target = "personAdditionalInformationEntity")
     @Mapping(source = "addressList", target = "addressEntity")
-    @Mapping(source = "personContacts", target = "personContactEntity")
+    @Mapping(source = "personPhoneList", target = "personPhoneEntity")
     PersonEntity modelToEntity(Person person);
 }

@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonContact {
+public class PersonPhone {
 
-    private String homePhoneNumber;
-    private String alternatePhoneNumber;
-    private State state;
+    private Integer phoneNo;
+
+    private String phoneNoType;
 }
