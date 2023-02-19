@@ -5,6 +5,7 @@ import com.crossasyst.personregistration.model.Person;
 import com.crossasyst.personregistration.model.PersonAdditionalInformation;
 import com.crossasyst.personregistration.response.PersonResponse;
 import com.crossasyst.personregistration.service.PersonService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +41,14 @@ public class PersonController {
     @PostMapping(path = "/persons/{personId}/additional-info", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<PersonAdditionalInformation> addAdditionalInfo(@RequestBody PersonAdditionalInformation personAdditionalInformation, @PathVariable Long personId){
-       personAdditionalInformation= personService.addAdditionalInfo(personAdditionalInformation,personId);
+       personAdditionalInformation= personService.addAdditionalInfo(personAdditionalInformation, personId);
        return new ResponseEntity<>(personAdditionalInformation, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/careprovider", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/person/{personId}/careprovider", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<CareProvider> addCareProvider(@RequestBody CareProvider careProvider){
-        careProvider=personService.addCareProvider(careProvider);
+    public ResponseEntity<CareProvider> addCareProvider(@RequestBody CareProvider careProvider, @PathVariable Long personId){
+        careProvider=personService.addCareProvider(careProvider, personId);
         return new ResponseEntity<>(careProvider, HttpStatus.OK);
     }
 

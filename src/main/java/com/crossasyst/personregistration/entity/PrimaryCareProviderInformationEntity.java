@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = "primary_care_provider_information")
 public class PrimaryCareProviderInformationEntity {
     @Id
-    @SequenceGenerator(name = "primary_care_provider_information_seq_id", sequenceName = "primary_care_provider_information_seq_id", initialValue = 10000000, allocationSize = 1)
+    @SequenceGenerator(name = "primary_care_provider_information_seq_id", sequenceName = "primary_care_provider_information_seq_id", initialValue = 50000000, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "primary_care_provider_information_seq_id")
     @Column(name = "primary_care_provider_information_id")
     private Long primaryCareProviderInformationId;
@@ -43,8 +43,8 @@ public class PrimaryCareProviderInformationEntity {
     @Column(name = "state")
     private String state;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_care_provider_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "care_provider_id")
     private CareProviderEntity careProviderEntity;
 
 }

@@ -51,34 +51,47 @@ public class PersonService {
     public PersonResponse CreatePerson(Person person) {
 
         log.info("Adding person details");
-        PersonEntity personEntity=personMapper.modelToEntity(person);
+        PersonEntity personEntity = personMapper.modelToEntity(person);
         personRepository.save(personEntity);
         log.info("Person details saved successfully.");
 
-        PersonResponse personResponse=new PersonResponse();
+        PersonResponse personResponse = new PersonResponse();
         personResponse.setId(personEntity.getPersonId());
         log.info("Your person id is {}", personResponse.getId());
         return personResponse;
     }
 
-    public PersonAdditionalInformation addAdditionalInfo(PersonAdditionalInformation personAdditionalInformation, Long personId) {
+    public PersonAdditionalInformation addAdditionalInfo(PersonAdditionalInformation personAdditionalInformation,Long personId) {
         log.info("Retrieving person details");
-        PersonEntity personEntity=personRepository.findById(personId).get();
-        CareProviderEntity careProviderEntity=new CareProviderEntity();
-        if(personEntity !=null){
-            PersonAdditionalInformationEntity personAdditionalInformationEntity= personAdditionalInformationMapper.modelToEntity(personAdditionalInformation);
+        PersonEntity personEntity = personRepository.findById(personId).get();
+
+            PersonAdditionalInformationEntity personAdditionalInformationEntity = personAdditionalInformationMapper.modelToEntity(personAdditionalInformation);
+
+            CareProvider careProvider=new CareProvider();
+        careProvider.setPrimaryCareProviderName(personAdditionalInformation.getCareProvider().getPrimaryCareProviderName());
+            careProvider.setPrimaryCareProviderInformation(personAdditionalInformation.getCareProvider().getPrimaryCareProviderInformation());
+
+            CareProviderEntity careProviderEntity = careProviderMapper.modelToEntity(careProvider);
+            careProviderRepository.save(careProviderEntity);
+            log.info("Care provider details saved");
+
             personAdditionalInformationEntity.setPersonEntity(personEntity);
             personAdditionalInformationEntity.setCareProviderEntity(careProviderEntity);
             personAdditionalInformationRepository.save(personAdditionalInformationEntity);
-        }
+
         log.info("Person additional information saved.");
         return personAdditionalInformation;
 
     }
 
-    public CareProvider addCareProvider(CareProvider careProvider) {
-        CareProviderEntity careProviderEntity=careProviderMapper.modelToEntity(careProvider);
-        careProviderRepository.save(careProviderEntity);
+
+    public CareProvider addCareProvider(CareProvider careProvider, Long personId) {
+        PersonEntity personEntity = personRepository.findById(personId).get();
+
+        if(personEntity !=null) {
+            CareProviderEntity careProviderEntity1 = careProviderMapper.modelToEntity(careProvider);
+            careProviderRepository.save(careProviderEntity1);
+        }
         log.info("Care provider details saved");
         return careProvider;
 

@@ -1,13 +1,12 @@
 package com.crossasyst.personregistration.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -23,11 +22,9 @@ public class CareProviderEntity {
     private String primaryCareProviderName;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_care_provider_id")
+    @JoinColumn(name = "care_provider_id")
     private List<PrimaryCareProviderInformationEntity> primaryCareProviderInformationEntity;
 
     @OneToOne(mappedBy = "careProviderEntity")
-    private PersonAdditionalInformationEntity personAdditionalInformation;
-
-
+    private PersonAdditionalInformationEntity personAdditionalInformationEntity;
 }

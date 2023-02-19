@@ -10,8 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CareProvider {
-
     private String primaryCareProviderName;
-
     private List<PrimaryCareProviderInformation> primaryCareProviderInformation;
 }
